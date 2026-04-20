@@ -15,10 +15,9 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory()->create([
-            'type' => 1,
-            'email' => 'superadmin@nrxen.com',
+            'email' => 'superadmin@domain.com',
             'mobile' => '11111111',
-            'password' => 'Nrxen@2026',
+            'password' => '12345678',
         ]);
     }
 }

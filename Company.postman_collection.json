@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "2ff67c3e-67a0-48c7-9025-200735b50d3b",
+		"name": "Company",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24518651"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"",
+									"    const responseJson = pm.response.json();",
+									"    pm.collectionVariables.set(\"auth_token\", responseJson.data.access_token);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ankitashit10@gmail.com\",\n    \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}login",
+							"host": [
+								"{{base_url}}login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.collectionVariables.set(\"auth_token\", null);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}logout",
+							"host": [
+								"{{base_url}}logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ankita Shit\",\n    \"mobile\": \"8001430926\",\n    \"email\": \"ankitashit10@gmail.com\",\n    \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}register",
+							"host": [
+								"{{base_url}}register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}project/list",
+							"host": [
+								"{{base_url}}project"
+							],
+							"path": [
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Dummy Project\",\n    \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry.\",\n    \"status\": 1,\n    \"image\": \"data:image/png;base64,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\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}project/store",
+							"host": [
+								"{{base_url}}project"
+							],
+							"path": [
+								"store"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}project/edit/4",
+							"host": [
+								"{{base_url}}project"
+							],
+							"path": [
+								"edit",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"title\": \"Dummy Project\",\n    \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry.\",\n    \"status\": 0,\n    \"image\": \"data:image/png;base64,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\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}project/update",
+							"host": [
+								"{{base_url}}project"
+							],
+							"path": [
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}project/destroy/5",
+							"host": [
+								"{{base_url}}project"
+							],
+							"path": [
+								"destroy",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		},
+		{
+			"key": "auth_token",
+			"value": ""
+		}
+	]
+}
