@@ -15,4 +15,10 @@
 - Run `php artisan key:generate`
 - Run `php artisan storage:link`
 
-<video controls src="Screencast from 20-04-26 12:11:41 PM IST.webm" title="Title"></video> <video controls src="Screencast from 20-04-26 12:30:00 PM IST.webm" title="Title"></video>
+## 🎥 Demo 1
+
+[Download / View Video](./public/videos/test1.webm)
+
+## 🎥 Demo 2
+
+[Download / View Video](./public/videos/test2.webm)
