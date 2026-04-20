@@ -19,19 +19,59 @@ class DashboardController extends Controller
 
     public function dashboard(Request $request)
     {
-        $data['total_projects'] = Project::where('status', 1)->count();
+        $data['total_projects'] = Project::where('status', 1);
+        if (auth()->user()->hasRole('user')) {
+            $data['total_projects'] = $data['total_projects']->where('user_id', auth()->id());
+        }
+        $data['total_projects'] = $data['total_projects']->count();
         $data['total_projects_percent'] = $data['total_projects'] > 0
             ? round(($data['total_projects'] / $data['total_projects']) * 100, 2)
             : 0;
-        $data['pending_projects'] = Approval::where('status', 0)->count();
+        $data['pending_projects'] = Approval::where('status', 0);
+        if (auth()->user()->hasRole('user')) {
+            $data['pending_projects'] = $data['pending_projects']->where('user_id', auth()->id());
+        }
+        $data['pending_projects'] = $data['pending_projects']->count();
         $data['pending_projects_percent'] = $data['pending_projects'] > 0
             ? round(($data['pending_projects'] / $data['total_projects']) * 100, 2)
             : 0;
-        $data['approved_projects'] = Approval::where('status', 1)->count();
+        $data['approved_projects'] = Approval::where('status', 1);
+        if (auth()->user()->hasRole('user')) {
+            $data['approved_projects'] = $data['approved_projects']->where('user_id', auth()->id());
+        }
+        $data['approved_projects'] = $data['approved_projects']->count();
         $data['approved_projects_percent'] = $data['approved_projects'] > 0
             ? round(($data['approved_projects'] / $data['total_projects']) * 100, 2)
             : 0;
-        $data['rejected_projects'] = Approval::where('status', 2)->count();
+        $data['rejected_projects'] = Approval::where('status', 2);
+        if (auth()->user()->hasRole('user')) {
+            $data['rejected_projects'] = $data['rejected_projects']->where('user_id', auth()->id());
+        }
+        $data['rejected_projects'] = $data['rejected_projects']->count();
+        $data['rejected_projects_percent'] = $data['rejected_projects'] > 0
+            ? round(($data['rejected_projects'] / $data['total_projects']) * 100, 2)
+            : 0;
+        $data['pending_projects'] = Approval::where('status', 0);
+        if (auth()->user()->hasRole('user')) {
+            $data['pending_projects'] = $data['pending_projects']->where('user_id', auth()->id());
+        }
+        $data['pending_projects'] = $data['pending_projects']->count();
+        $data['pending_projects_percent'] = $data['pending_projects'] > 0
+            ? round(($data['pending_projects'] / $data['total_projects']) * 100, 2)
+            : 0;
+        $data['approved_projects'] = Approval::where('status', 1);
+        if (auth()->user()->hasRole('user')) {
+            $data['approved_projects'] = $data['approved_projects']->where('user_id', auth()->id());
+        }
+        $data['approved_projects'] = $data['approved_projects']->count();
+        $data['approved_projects_percent'] = $data['approved_projects'] > 0
+            ? round(($data['approved_projects'] / $data['total_projects']) * 100, 2)
+            : 0;
+        $data['rejected_projects'] = Approval::where('status', 2);
+        if (auth()->user()->hasRole('user')) {
+            $data['rejected_projects'] = $data['rejected_projects']->where('user_id', auth()->id());
+        }
+        $data['rejected_projects'] = $data['rejected_projects']->count();
         $data['rejected_projects_percent'] = $data['rejected_projects'] > 0
             ? round(($data['rejected_projects'] / $data['total_projects']) * 100, 2)
             : 0;
